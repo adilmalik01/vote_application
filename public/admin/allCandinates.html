@@ -4,14 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>signup page</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="shortcut icon" href="./images/manual-voting.png" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+    <title>Add</title>
+    <link rel="stylesheet" href="./admin.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <style>
         * {
             padding: 0;
             margin: 0;
@@ -19,7 +16,7 @@
 
         #wrapper {
             width: 100%;
-            height: 100vh;
+            height: 90vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -65,7 +62,7 @@
         }
 
         .uper-div .input {
-            height: 85%;
+            height: 90%;
             margin: 5px;
             width: 43%;
         }
@@ -74,7 +71,6 @@
         .box form button {
             width: 90%;
             border: none;
-            cursor: pointer;
             border-radius: 5px;
             margin-bottom: 20px;
             padding: 0vw 0.3vw;
@@ -121,84 +117,54 @@
         .alertWarning {
             color: red;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        }
 
-
-        .userAvatar {
-            display: block;
-            /* width: 200px; */
-            background-color: rgb(26, 142, 251);
-            border-radius: 5px;
-            padding: 12px;
-            font-size: 19px;
-            margin: 10px auto;
-            color: black;
-            cursor: pointer;
-            width: 87%;
-            height: 8%;
-            font-family: "Madimi One", sans-serif;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #userAvatar {
-            display: none;
-        }
-
-        .fileName {
-            /* background-color: aqua; */
-            width: 90%;
-            color: rgb(1, 134, 250);
-            font-size: 15px;
-            display: flex;
-            flex-wrap: wrap;
-            font-family: Arial, Helvetica, sans-serif;
         }
     </style>
 </head>
 
 <body>
-    <div id="wrapper">
+    <div class="wrapper">
+        <div class="left">
+            <header>
+                <h1>Vote </h1>
+                <h3>FOr yourSelf</h3>
+            </header>
+            <div class="links">
+                <button><i class="bi bi-person-add"></i><a href="./adminPanel.html">Dashboard</a></button>
+                <button><i class="bi bi-list-task"></i> <a href="./allCandinates.html">All Candinates</a></button>
+                <button><i class="bi bi-person-add"></i><a href="./addCandinate.html">Add Candinate</a></button>
+            </div>
+        </div>
+        <div class="right">
+            <nav>
+                <div class="logo">
+                    <button class="sideBarOpen"><i class="bi bi-list"></i></button>
+                </div>
 
-        <div class="box">
-            <div class="header">
-                <img src="./images/manual-voting.png" alt="">
-                <h1>Sign in</h1>
-            </div>
-            <div class="body">
-                <form>
-                    <div class="uper-div">
-                        <input type="text" minlength="3" maxlength="10" class="input" placeholder="FirstName" name=""
-                            id="">
-                        <input type="text" minlength="3" maxlength="10" class="input" placeholder="LastName" name=""
-                            id="">
+                <div class="menu">
+                    <button><i class="bi bi-three-dots-vertical"></i></button>
+                    <div class="dropdown">
+                        <div class="profile">
+                            <input type="button" value="profile" id="">
+                        </div>
+                        <div class="logout">
+                            <input type="button" value="logout" id="">
+                        </div>
                     </div>
-                    <input type="number" minlength="13" class="input" placeholder="CNIC NUMBER" name="" id="nic">
-                    <input type="text" class="input" placeholder="Email" name="" id="">
-                    <div class="uper-div">
-                        <input type="text" class="input" placeholder="Password" name="" id="">
-                        <input type="text" class="input" placeholder="Reapeat Password" name="" id="">
-                    </div>
-                    <label class="userAvatar" for="userAvatar">Add Profile Image</label>
-                    <input type="file" required accept="image/*" id="userAvatar">
-                    <div class="fileName">
-                        <!-- <p>Your Profile pic selected </p> -->
-                    </div>
-                    <div class="account">
-                        <p>I have Already Account <a href="./login.html">Login</a> </p>
-                    </div>
-                    <button id="signUp">registar</button>
-                </form>
-            </div>
+                </div>
+            </nav>
+
         </div>
     </div>
 
 
+
+    <script src="../utills/dropdown.mjs"></script>
+    <script src="../utills/sideBar.mjs"></script>
+    <script type="module" src="../utills/tokenCheck.mjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script type="module" src="signup.mjs"></script>
+    <script type="module" src="../utills/allCandinates.mjs"></script>
 </body>
 
 </html>

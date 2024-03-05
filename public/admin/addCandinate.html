@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add</title>
+    <link rel="stylesheet" href="./admin.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #wrapper {
+            width: 100%;
+            height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            width: 600px;
+            height: 95%;
+            display: grid;
+            justify-content: center;
+            grid-template-rows: 2fr 10fr;
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: end;
+            margin-top: 20px;
+            font-family: "Oswald", sans-serif;
+        }
+
+        .body form {
+            height: 100%;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .body form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .uper-div {
+            height: 60px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .uper-div .input {
+            height: 90%;
+            margin: 5px;
+            width: 43%;
+        }
+
+
+        .box form button {
+            width: 90%;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            padding: 0vw 0.3vw;
+            font-size: 1.1rem;
+            text-transform: capitalize;
+            background-color: rgb(192, 187, 187);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            height: 50px;
+        }
+
+        @media (max-width:550px) {
+            .input {
+                font-size: 1.1rem;
+            }
+        }
+
+        .account {
+            width: 90%;
+            display: flex;
+            justify-content: start;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .account p a {
+            text-decoration: none;
+            color: rgb(0, 68, 255);
+        }
+
+        .inputbox {
+            width: 100%;
+            position: relative;
+            height: 10% !important;
+        }
+
+        .input {
+            height: 10%;
+            width: 90%;
+            border-radius: 5px;
+            border: 1px solid black;
+            padding: 0vw 0.3vw;
+            font-size: 1.3rem;
+        }
+
+        .alertWarning {
+            color: red;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="left">
+            <header>
+                <h1>Vote </h1>
+                <h3>FOr yourSelf</h3>
+            </header>
+            <div class="links">
+                <button><i class="bi bi-person-add"></i><a href="./adminPanel.html">Dashboard</a></button>
+                <button><i class="bi bi-list-task"></i> <a href="./allCandinates.html">All Candinates</a></button>
+                <button><i class="bi bi-person-add"></i><a href="./addCandinate.html">Add Candinate</a></button>
+            </div>
+        </div>
+        <div class="right">
+            <nav>
+                <div class="logo">
+                    <button class="sideBarOpen"><i class="bi bi-list"></i></button>
+                </div>
+
+                <div class="menu">
+                    <button><i class="bi bi-three-dots-vertical"></i></button>
+                    <div class="dropdown">
+                        <div class="profile">
+                            <input type="button" value="profile" id="">
+                        </div>
+                        <div class="logout">
+                            <input type="button" value="logout" id="">
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div id="wrapper">
+
+                <div class="box">
+                    <div class="header">
+                        <h1>Add</h1>
+                    </div>
+                    <div class="body">
+                        <form>
+                            <div class="uper-div">
+                                <input type="text" minlength="3" maxlength="10" class="input" placeholder="FirstName"
+                                    name="" id="firstName">
+                                <input type="text" minlength="3" maxlength="10" class="input" placeholder="LastName"
+                                    name="" id="lastName">
+                            </div>
+                            <div class="uper-div">
+                                <input type="number" minlength="13" class="input" placeholder="NIC NUMBER" name=""
+                                    id="nic">
+                                <input type="text" class="input" placeholder="Email" name="" id="email">
+                            </div>
+                            <div class="uper-div">
+                                <input type="text" class="input" placeholder="Qualification" name="" id="qualification">
+                                <input type="text" class="input" placeholder="Party" name="" id="party">
+                            </div>
+
+                            <label class="userAvatar" for="userAvatar">Add User Image</label>
+                            <input type="file" accept="image/*" id="userAvatar">
+
+                            <div class="account">
+                            </div>
+                            <button id="addData">registar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="module" src="addCandinate.js"></script>
+    <script src="../utills/dropdown.mjs"></script>
+    <script src="../utills/sideBar.mjs"></script>
+    <script type="module" src="../utills/tokenCheck.mjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+
+</html>

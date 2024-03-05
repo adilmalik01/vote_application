@@ -1,0 +1,10 @@
+candinate add
+\\\\\
+firstName 
+lastName
+email
+NIC
+Qualification
+Party
+party Pic
+candinate Pic

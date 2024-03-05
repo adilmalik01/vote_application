@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="left">
+      <header>
+        <h1>Vote </h1>
+        <h3>FOr yourSelf</h3>
+      </header>
+      <div class="links">
+        <button><i class="bi bi-person-add"></i><a href="./adminPanel.html">Dashboard</a></button>
+        <button><i class="bi bi-list-task"></i> <a href="./allCandinates.html">All Candinates</a></button>
+        <button><i class="bi bi-person-add"></i><a href="./addCandinate.html">Add Candinate</a></button>
+      </div>
+    </div>
+    <div class="right">
+      <nav>
+        <div class="logo">
+          <button class="sideBarOpen"><i class="bi bi-list"></i></button>
+        </div>
+
+        <div class="menu">
+          <button><i class="bi bi-three-dots-vertical"></i></button>
+          <div class="dropdown">
+            <div class="profile">
+              <input type="button" value="profile" id="">
+            </div>
+            <div class="logout">
+              <input type="button" value="logout" id="">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="../utills/dropdown.mjs"></script>
+  <script src="../utills/sideBar.mjs"></script>
+  <script type="module" src="../utills/tokenCheck.mjs"></script>   
+</body>
+
+</html>
