@@ -66,23 +66,16 @@ const signUpHandler = async (e) => {
             headers: { 'Content-Type': 'multipart/form-data' }
         })
         console.log(res);
+
+        window.location.href = './login.html'
     } catch (e) {
         console.log(e);
+        alertWarning(e.response.data)
 
     }
 
-    console.log();
-}
-// let firebaseConfig = {
-// apiKey: "AIzaSyBoRm8yCEjwkjvhq1o-osQfnPMjqUXwAx4",
-// authDomain: "vote-app-8ea70.firebaseapp.com",
-// projectId: "vote-app-8ea70",
-// storageBucket: "vote-app-8ea70.appspot.com",
-// messagingSenderId: "412982628722",
-// appId: "1:412982628722:web:fcb45e40e21d363c2ccdeb"
-// };
 
-// firebase.initializeApp(firebaseConfig);
+}
 
 const alertWarning = (message) => {
     const Toast = Swal.mixin({

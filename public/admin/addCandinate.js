@@ -1,6 +1,20 @@
 let addData = document.querySelector("#addData")
+let fileInput = document.querySelector("#userAvatar")
+let filesInfo;
+
+fileInput.addEventListener("input", (e) => {
+    filesInfo = e.target.files[0]
+    console.log(filesInfo)
+    let preivew = document.querySelector(".preview")
+    preivew.innerHTML = `Your Profile pic selected ${e.target.files[0].name}`
+    console.log(preivew);
+})
+
+
+
 const addCandinate = async (e) => {
     e.preventDefault()
+    console.log(filesInfo);
 
     //ALL INPUT VALUES
     let firstName = document.querySelector("#firstName").value;
@@ -23,19 +37,33 @@ const addCandinate = async (e) => {
 
 
 
-    let userData = {
-        firstName: firstName,
-        lastName: lastName,
-        nicNumber: nic,
-        email: email,
-        qualification: qualification,
-        party: party
-    }
-    try {
+    // let userData = {
+    //     firstName: firstName,
+    //     lastName: lastName,
+    //     nicNumber: nic,
+    //     email: email,
+    //     qualification: qualification,
+    //     party: party
+    // }
+    let formData = new FormData()
 
-        let res = await axios.post('http://localhost:3005/api/v1/addCandinate', userData, {
-            withCredentials: true
+    formData.append("firstName", firstName)
+    formData.append("lastName", lastName)
+    formData.append("nicNumber", nic)
+    formData.append("email", email)
+    formData.append("qualification", qualification)
+    formData.append("party", party)
+    formData.append("CandinateAvatar", filesInfo)
+    try {
+        let res = await axios.post('http://localhost:3005/api/v1/addCandinate', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
         })
+        Swal.fire({
+            title: "Registered",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 1000,
+        });
         console.log(res);
     } catch (e) {
         console.log(e);
@@ -44,7 +72,9 @@ const addCandinate = async (e) => {
 
 
 
+
     console.log("firstName", firstName);
+    // let res = await axios.post('http://localhost:3005/api/v1/addCandinate', userData, {
     console.log("lasstName", lastName);
     console.log("nic", nic);
     console.log("email", email);

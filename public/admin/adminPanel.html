@@ -28,7 +28,13 @@
         <div class="logo">
           <button class="sideBarOpen"><i class="bi bi-list"></i></button>
         </div>
-
+        <div style="display: flex;
+         justify-content: center;
+         align-items: center;
+         font-family: Verdana, Geneva, Tahoma, sans-serif;
+         ">
+          <h1>ADMIN PANEL</h1>
+        </div>
         <div class="menu">
           <button><i class="bi bi-three-dots-vertical"></i></button>
           <div class="dropdown">
@@ -36,7 +42,7 @@
               <input type="button" value="profile" id="">
             </div>
             <div class="logout">
-              <input type="button" value="logout" id="">
+              <input type="button" value="logout" id="logout">
             </div>
           </div>
         </div>
@@ -46,8 +52,9 @@
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="../utills/dropdown.mjs"></script>
+  <script src="../utills/logout.mjs"></script>
   <script src="../utills/sideBar.mjs"></script>
-  <script type="module" src="../utills/tokenCheck.mjs"></script>   
+  <script type="module" src="../utills/tokenCheck.mjs"></script>
 </body>
 
 </html>

@@ -4,7 +4,7 @@ import cors from 'cors'
 import cookieParser from "cookie-parser"
 import path from 'path'
 import jwt from 'jsonwebtoken'
-
+import moment from 'moment';
 
 const __dirname = path.resolve()
 
@@ -37,21 +37,22 @@ app.use((req, res, next) => {
     try {
         const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
 
-        req.body.currentUser = {
+        req.currentUser = {
             email: decoded.email,
             isAdmin: decoded.isAdmin,
             firstName: decoded.firstName,
             lastName: decoded.lastName,
             _id: decoded._id,
+            profileImg: decoded.avatar,
+            createdAt: decoded.createdAt,
+            nic: decoded.nic,
+            isVoted: decoded.isVoted
         }
 
-        // console.log('currentUser', req.body.currentUser)
+        // console.log('currentUser', req.currentUser)
         // console.log('token', decoded)
-
         next();
-        // return;
     } catch (err) {
-        // err
         res.status(401).send({ message: "invalid toke nh mila ywr" })
     }
 })
@@ -59,10 +60,6 @@ app.use((req, res, next) => {
 
 
 app.use("/api/v1", CandinatesRouter)
-
-app.get("/ping", (req, res) => {
-    res.send({ data: req.body.currentUser })
-})
 
 
 const port = process.env.SERVER_SECRET

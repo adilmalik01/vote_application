@@ -1,6 +1,7 @@
 import client from '../database/mongodb.mjs';
 import express from 'express'
 import { v2 as cloudinary } from 'cloudinary';
+import moment from 'moment';
 import fs from 'fs'
 import {
     stringToHash,
@@ -53,16 +54,18 @@ export let loginHandler = async (req, res) => {
                     lastName: result.lastName,
                     email: result.email,
                     _id: result._id,
+                    nic: result.nicNumber,
                     isAdmin: result.isAdmin,
-                    avatar: result.avatar
+                    avatar: result.avatar,
+                    createdAt: result.createdAt,
+                    isVoted: result.isVoted
                 }, process.env.TOKEN_SECRET);
-                // console.log(token);          /// LOG TOKEN
 
 
                 res.cookie('token', token, {
                     httpOnly: true,
                     secure: true,
-                    expires: new Date(Date.now() + 900000)
+                    expires: new Date(Date.now() + 86400000)
                 })
 
                 res.send({
@@ -98,7 +101,7 @@ export let signupHandler = async (req, res) => {
         !req.body.password ||
         !req.body.firstName ||
         !req.body.lastName ||
-        !req.body.nicNumber||
+        !req.body.nicNumber ||
         !req.files
     ) {
         res.status(401)
@@ -123,38 +126,50 @@ export let signupHandler = async (req, res) => {
     userData.email = userData.email.toLowerCase()
     try {
 
-            let imgResult = await cloudinary.uploader.upload(req.files[0].path)
-            fs.unlinkSync(req.files[0].path)
+        let imgResult = await cloudinary.uploader.upload(req.files[0].path)
+        fs.unlinkSync(req.files[0].path)
 
-            const hashPass = await stringToHash(userData.password);
-            let result = await db.findOne({ nicNumber: userData.nicNumber })
-            if (result) {
-                res.send({ msg: "already exist Nic" })
-                return;
-            }
-            else {
-                const insertData = await db.insertOne(
-                    {
-                        firstName: userData.firstName,
-                        lastName: userData.lastName,
-                        email: userData.email,
-                        password: hashPass,
-                        nicNumber: userData.nicNumber,
-                        isAdmin: false,
-                        avatar: imgResult.secure_url,
-                        createdAt: Date.now()
-                    }
-                )
-                res.status(200).send(
-                    {
-                        msg: "Signup Succesfully",
-                    }
-                    )
+        const hashPass = await stringToHash(userData.password);
+        let result = await db.findOne({ nicNumber: userData.nicNumber })
+        if (result) {
+            res.send({ msg: "already exist Nic" })
+            return;
+        }
+        else {
+            const insertData = await db.insertOne(
+                {
+                    firstName: userData.firstName,
+                    lastName: userData.lastName,
+                    email: userData.email,
+                    password: hashPass,
+                    nicNumber: userData.nicNumber,
+                    isAdmin: false,
+                    avatar: imgResult.secure_url,
+                    isVoted: false,
+                    createdAt: moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
                 }
-                
+            )
+            res.status(200).send(
+                {
+                    msg: "Signup Succesfully",
+                }
+            )
+        }
+
     }
     catch (e) {
         console.log(e)
         res.send("invalid data")
     }
+}
+
+
+
+
+export let logoutHandler = async (req, res) => {
+    res.cookie("token", "", {
+        secure: true,
+        httpOnly: true
+    })
+    res.send("out")
 }

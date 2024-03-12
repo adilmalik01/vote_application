@@ -119,8 +119,6 @@
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
         }
-
-        
     </style>
 </head>
 
@@ -150,7 +148,7 @@
                             <input type="button" value="profile" id="">
                         </div>
                         <div class="logout">
-                            <input type="button" value="logout" id="">
+                            <input type="button" value="logout" id="logout">
                         </div>
                     </div>
                 </div>
@@ -180,9 +178,10 @@
                             </div>
 
                             <label class="userAvatar" for="userAvatar">Add User Image</label>
-                            <input type="file" accept="image/*" id="userAvatar">
+                            <input type="file" style="display: none;" accept="image/*" id="userAvatar">
 
                             <div class="account">
+                                <p style="color: rgb(53, 104, 234);" class="preview"></p>
                             </div>
                             <button id="addData">registar</button>
                         </form>
@@ -198,6 +197,7 @@
     <script src="../utills/dropdown.mjs"></script>
     <script src="../utills/sideBar.mjs"></script>
     <script type="module" src="../utills/tokenCheck.mjs"></script>
+    <script src="../utills/logout.mjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>

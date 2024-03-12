@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        .Voted {
+            color: green;
+        }
+
+        .vote {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="main">
+
+        <nav>
+            <div class="logo">
+                <h2>voting app</h2>
+            </div>
+
+            <div class="menu">
+                <button><i class="bi bi-three-dots-vertical"></i></button>
+                <div class="dropdown">
+                    <div class="profile">
+                        <a href="./index.html"><input type="button" value="Home" id=""></a>
+                    </div>
+                    <div class="logout">
+                        <input type="button" value="logout" id="logout">
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="profileBodyDiv">
+            <div class="profileDiv">
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="./utills/logout.mjs"></script>
+    <script src="./utills/dropdown.mjs"></script>
+    <script type="module" src="./utills/logout.mjs"></script>
+    <script type="module">
+        let name = document.querySelector(".name")
+        let nic = document.querySelector(".nic")
+        let email = document.querySelector(".email")
+        let join = document.querySelector(".join")
+        let profileImg = document.querySelector(".profileImg")
+
+
+
+        const getProfile = async () => {
+            let mainDiv = document.querySelector(".profileDiv")
+            let userId = localStorage.getItem("userId")
+            try {
+                let res = await axios.get(`http://localhost:3005/api/v1/user/${userId}/profile`, {
+                    withCredentials: true
+                })
+
+
+                let data = res.data
+                data.forEach((element) => {
+                    console.log(element);
+                    mainDiv.innerHTML = `
+                    <div class="profileImgDiv">
+                        <img class="profileImg"  src="${element.avatar}" alt="Profile-Image">
+                    </div>
+                    <div class="scroll">
+                        <table>
+                            <th>
+                            <tr>
+                               <td class="heading">Fullname</td>
+                               <td>Email</td>
+                               <td>CNIC</td>
+                               <td>Joining At</td>
+                               <td>status</td>
+                            </tr>
+                            </th>
+                            <tr>
+                                <td>${element.firstName} ${element.lastName}</td>
+                                <td class="email">${element.email}</td>
+                                <td class="nic">${element.nicNumber}</td>
+                                <td>${element.createdAt}</td>
+                                <td class="${(element.isVoted ? "Voted" : "vote")}" >
+                                 ${(element.isVoted ? "You are Voted You Can Not See Home Screen" : "Not Voted")}</td>
+                            </tr>
+                        </table >
+                    </div >
+            `
+                });
+
+            } catch (e) {
+                console.log("error", e);
+            }
+        }
+        getProfile()
+    </script>
+</body>
+
+</html>

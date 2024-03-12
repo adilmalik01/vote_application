@@ -14,14 +14,14 @@ const loginHandler = async (e) => {
         return;
     }
 
-    // if (!email.endsWith("@gmail.com")) {
-    //     alertWarning("Invalid Email")
-    //     return;
-    // }
-    // if (!password.match(repeatPass)) {
-    //     alertWarning("Cannot Matach password")
-    //     return;
-    // }
+    if (!email.endsWith("@gmail.com")) {
+        alertWarning("Invalid Email")
+        return;
+    }
+    if (!password.match(repeatPass)) {
+        alertWarning("Cannot Matach password")
+        return;
+    }
 
 
     let userData = {
@@ -34,6 +34,11 @@ const loginHandler = async (e) => {
         let response = await axios.post('http://localhost:3005/api/v1/login', userData, {
             withCredentials: true
         })
+        Swal.fire({
+            html: `<p class="alert">Login SucessFully`,
+            icon: "warning",
+            showConfirmButton: false,
+        });
         console.log(response.data.data);
         if (response.data.data.isAdmin === false) {
             window.location.href = "./index.html"
